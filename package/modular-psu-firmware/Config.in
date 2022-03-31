@@ -1,0 +1,20 @@
+config BR2_PACKAGE_MODULAR_PSU_FIRMWARE
+	bool "modular-psu-firmware"
+        depends on BR2_USE_MMU # fork()
+        depends on !BR2_STATIC_LIBS # sdl2
+        select BR2_PACKAGE_SDL2
+        select BR2_PACKAGE_SDL2_MIXER
+        select BR2_PACKAGE_SDL2_NET
+        select BR2_PACKAGE_SDL2_IMAGE
+        select BR2_PACKAGE_SDL2_TT
+#	depends on !BR2_STATIC_LIBS # sdl2	
+#	    select BR2_PACKAGE_SDL2
+#	    select BR2_PACKAGE_SDL2_IMAGE
+#        select BR2_PACKAGE_SDL2_TTF
+	help
+	  modular-psu-firmware package.
+
+	  http://envox.eu
+comment "chocolate-doom needs a toolchain w/ dynamic library"
+        depends on BR2_USE_MMU
+        depends on BR2_STATIC_LIBS
