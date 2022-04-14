@@ -387,6 +387,22 @@ class ULX3S(Board):
             "framebuffer",
         })
 
+# ULX4M support ------------------------------------------------------------------------------------
+
+class ULX4M(Board):
+    soc_kwargs = {"uart_name": "serial", "sys_clk_freq": int(50e6)} #use Wishbone and L2 for m$
+    def __init__(self):
+        from litex_boards.targets import ulx4m
+        Board.__init__(self, ulx4m.BaseSoC, soc_capabilities={
+            # Communication
+            "serial",
+            # Storage
+            "sdcard",
+            # Video,
+            "framebuffer",
+            #"video_terminal",
+        })
+        
 # HADBadge support ---------------------------------------------------------------------------------
 
 class HADBadge(Board):
@@ -634,6 +650,7 @@ supported_boards = {
     # Lattice
     "versa_ecp5":      VersaECP5,
     "ulx3s":           ULX3S,
+    "ulx4m":           ULX4M,
     "hadbadge":        HADBadge,
     "orangecrab":      OrangeCrab,
     "butterstick":     ButterStick,
