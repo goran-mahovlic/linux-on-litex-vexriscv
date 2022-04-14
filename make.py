@@ -398,6 +398,7 @@ class ULX4M(Board):
             "serial",
             # Storage
             "sdcard",
+            "switches", # needed on ulx4m-ls v002 as SD card has double pin connection
             # Video,
             "framebuffer",
             #"video_terminal",
