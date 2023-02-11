@@ -414,23 +414,6 @@ class ULX3S(Board):
             "framebuffer",
         })
 
-# ULX4M support ------------------------------------------------------------------------------------
-
-class ULX4M(Board):
-    soc_kwargs = {"uart_name": "serial", "sys_clk_freq": int(50e6)} #use Wishbone and L2 for m$
-    def __init__(self):
-        from litex_boards.targets import ulx4m
-        Board.__init__(self, ulx4m.BaseSoC, soc_capabilities={
-            # Communication
-            "serial",
-            # Storage
-            "sdcard",
-            "switches", # needed on ulx4m-ls v002 as SD card has double pin connection
-            # Video,
-            "framebuffer",
-            #"video_terminal",
-        })
-        
 # HADBadge support ---------------------------------------------------------------------------------
 
 class HADBadge(Board):
@@ -549,6 +532,40 @@ class Schoko(Board):
             "spiflash",
             #"sdcard",
             "spisdcard",
+            # Video,
+            "framebuffer",
+        })
+
+# Konfekt support -----------------------------------------------------------------------------------
+class Konfekt(Board):
+    soc_kwargs = {"l2_size" : 0}
+    def __init__(self):
+        from litex_boards.targets import machdyne_konfekt
+        Board.__init__(self, machdyne_konfekt.BaseSoC, soc_capabilities={
+            # Communication
+            "serial",
+            "usb_host",
+            # Storage
+            #"spiflash",
+            "spisdcard",
+            #"sdcard",
+            # Video,
+            "framebuffer",
+        })
+
+# Noir support -----------------------------------------------------------------------------------
+class Noir(Board):
+    soc_kwargs = {"l2_size" : 8192}
+    def __init__(self):
+        from litex_boards.targets import machdyne_noir
+        Board.__init__(self, machdyne_noir.BaseSoC, soc_capabilities={
+            # Communication
+            "serial",
+            "usb_host",
+            # Storage
+            "spiflash",
+            "spisdcard",
+            #"sdcard",
             # Video,
             "framebuffer",
         })
@@ -717,19 +734,6 @@ supported_boards = {
     "decklink_quad_hdmi_recorder" : DecklinkQuadHDMIRecorder,
 
     # Lattice
-<<<<<<< HEAD
-    "versa_ecp5":      VersaECP5,
-    "ulx3s":           ULX3S,
-    "ulx4m":           ULX4M,
-    "hadbadge":        HADBadge,
-    "orangecrab":      OrangeCrab,
-    "butterstick":     ButterStick,
-    "camlink_4k":      CamLink4K,
-    "trellisboard":    TrellisBoard,
-    "ecpix5":          ECPIX5,
-    "colorlight_i5":   Colorlight_i5,
-    "icesugar_pro":    IcesugarPro,
-=======
     "versa_ecp5"                  : VersaECP5,
     "ulx3s"                       : ULX3S,
     "hadbadge"                    : HADBadge,
@@ -741,7 +745,8 @@ supported_boards = {
     "colorlight_i5"               : Colorlight_i5,
     "icesugar_pro"                : IcesugarPro,
     "schoko"                      : Schoko,
->>>>>>> 4ad40f5ffe6a66ccdc413b49a8fd91b93ae18cc1
+    "konfekt"                     : Konfekt,
+    "noir"                        : Noir,
 
     # Altera/Intel
     "de0nano"                     : De0Nano,
